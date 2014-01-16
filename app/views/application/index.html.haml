@@ -1,0 +1,14 @@
+.regions
+	= collection_select(:region, :id, Region.all, :id, :name, :include_blank => true)
+	= select_tag(:cities)
+.error
+	%table
+		%tr
+			%td
+				.statusText
+		%tr
+			%td
+				.statusCode
+		%tr
+			%td
+				.responseText
