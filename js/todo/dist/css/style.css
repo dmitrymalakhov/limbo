@@ -1,5 +1,11 @@
+.list { padding-top: 10px; }
 .list .item.completed .content { text-decoration: line-through; }
 .list .item .content, .list .item .remove, .list .item .checkbox { display: inline-block; vertical-align: middle; *vertical-align: auto; *zoom: 1; *display: inline; }
 .list .item .remove, .list .item .checkbox { padding-left: 10px; }
 
+.toggle .item { display: inline-block; vertical-align: middle; *vertical-align: auto; *zoom: 1; *display: inline; padding: 5px; cursor: pointer; text-decoration: underline; }
+
 .todolist { width: 400px; }
+
+.toolbar { padding-top: 10px; }
+.toolbar .toggle { display: inline-block; vertical-align: middle; *vertical-align: auto; *zoom: 1; *display: inline; }

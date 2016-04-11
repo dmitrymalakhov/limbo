@@ -1,12 +1,10 @@
 import React from 'react';
 import * as Const from './Const.jsx';
 
-let itemCounter = 0;
 
 export const addItem = (content) => {
 	return {
 		type: Const.ADD_ITEM,
-		id: itemCounter++,
 		content
 	}
 }
@@ -30,5 +28,19 @@ export const сompleteItem = (id, completed) => {
 		type: Const.COMPLETE_ITEM,
 		id,
 		completed
+	}
+}
+
+export const changeFilter = (filter) => {
+	return {
+		type: Const.CHANGE_FILTER,
+		filter
+	}
+}
+
+export const changeSort = (sort) => {
+	return {
+		type: Const.CHANGE_SORT,
+		sort
 	}
 }

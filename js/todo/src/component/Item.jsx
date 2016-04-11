@@ -21,14 +21,9 @@ class Item extends React.Component {
 
 	handlerComplete = () => {
 		const { store } = this.context;
-		const state = store.getState();
+		let { id, completed } = this.props;
 
-		let { id } = this.props;
-		let completed = state.completed ? false : true;
-
-		store.dispatch(Action.сompleteItem(id, completed));
-
-		console.log(completed);
+		store.dispatch(Action.сompleteItem(id, completed ? false : true));
 	}
 
 	render() {

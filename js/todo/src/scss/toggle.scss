@@ -1,0 +1,8 @@
+.toggle {
+	.item {
+		@include inline-block();
+		padding: 5px;
+		cursor: pointer;
+		text-decoration: underline;
+	}
+}

@@ -5,14 +5,17 @@ import _ from "lodash";
 
 let defaultState = {
 	items: [],
-	content: ""
+	content: "",
+	lastID: 0
 };
 
 export default (state = _.merge(defaultState, LocalStorage.load()), action) => {
 	switch(action.type) {
 		case Const.ADD_ITEM:
 			if(action.content.length) {
-				state.items.push({"id": action.id, "content": action.content, "completed": false});
+				state.lastID++;
+
+				state.items.push({"id": state.lastID, "content": action.content, "completed": false, "show": true});
 				state.content = "";
 			}
 			break;
@@ -31,6 +34,28 @@ export default (state = _.merge(defaultState, LocalStorage.load()), action) => {
 			break;
 		case Const.CHANGE_INPUT:
 			state.content = action.content;
+			break;
+		case Const.CHANGE_SORT:
+			state.items = _.sortBy(state.items, function(item) {
+				return [item[action.sort]];
+			});
+			break;
+		case Const.CHANGE_FILTER:
+			state.items.map((obj) => {
+				obj.show = true;
+
+				if(action.filter == "completed") {
+					if(obj.completed == false) {
+						obj.show = false;
+					}
+				} else if(action.filter == "uncompleted") {
+					if(obj.completed == true) {
+						obj.show = false;
+					}
+				}
+
+				return obj;
+			});
 			break;
 	}
 
