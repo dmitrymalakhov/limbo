@@ -1,0 +1,5 @@
+.list .item.completed .content { text-decoration: line-through; }
+.list .item .content, .list .item .remove, .list .item .checkbox { display: inline-block; vertical-align: middle; *vertical-align: auto; *zoom: 1; *display: inline; }
+.list .item .remove, .list .item .checkbox { padding-left: 10px; }
+
+.todolist { width: 400px; }

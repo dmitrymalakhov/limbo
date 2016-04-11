@@ -12,7 +12,7 @@ class List extends React.Component {
 
 		for(let i = 0, len = this.props.items.length; i < len; i++) {
 			let item= this.props.items[i];
-			items.push(<Item key={i} content={item.content} id={item.id}/>);
+			items.push(<Item key={i} content={item.content} id={item.id} completed={item.completed}/>);
 		}
 
 		return items;

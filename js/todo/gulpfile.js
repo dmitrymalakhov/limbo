@@ -17,8 +17,18 @@ gulp.task("browserify", function() {
 	.pipe(gulp.dest('./dist/js/'));
 });
 
+gulp.task('sass', function () {
+	return sass('./src/scss/style.scss', {
+			compass: true ,
+			style: "compact",
+			stopOnError: true
+		})
+		.on('error', sass.logError)
+		.pipe(gulp.dest('./dist/css'));
+});
+
 gulp.task("copy", function() {
 	gulp.src('./src/html/**/*').pipe(gulp.dest("dist/"));
 });
 
-gulp.task("default", ["browserify", "copy"]);
+gulp.task("default", ["browserify", "sass", "copy"]);

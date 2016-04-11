@@ -42,7 +42,7 @@ class ToDoList extends React.Component {
 
 		return <div className="todolist">
 			<div className="form">
-				<input onChange={ this.onChangeInput }/>
+				<input onChange={ this.onChangeInput } value={ state.content }/>
 				<Button title="Add Item" onClick={ this.addItem }/>
 			</div>
 			<List items={ state.items }/>

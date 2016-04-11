@@ -1,4 +1,5 @@
 import React from 'react';
+import Checkbox from "./Checkbox.jsx";
 import * as Action from '../common/Action.jsx';
 
 class Item extends React.Component {
@@ -11,19 +12,36 @@ class Item extends React.Component {
 		this.displayName = 'Item';
 	}
 
-	remove = () => {
+	handlerRemove = () => {
 		let { id } = this.props;
 		const { store } = this.context;
 
 		store.dispatch(Action.removeItem(id));
 	}
 
-	render() {
-		let { content } = this.props;
+	handlerComplete = () => {
+		const { store } = this.context;
+		const state = store.getState();
 
-		return <div className="item">
+		let { id } = this.props;
+		let completed = state.completed ? false : true;
+
+		store.dispatch(Action.сompleteItem(id, completed));
+
+		console.log(completed);
+	}
+
+	render() {
+		let { content, completed } = this.props;
+
+		let className = ["item"];
+
+		completed && className.push("completed");
+
+		return <div className={className.join(" ")}>
 			<div className="content">{content}</div>
-			<div className="remove" onClick={this.remove}>X</div>
+			<div className="remove" onClick={this.handlerRemove}>X</div>
+			<Checkbox checked={completed} onChange={this.handlerComplete}/>
 		</div>;
 	}
 }

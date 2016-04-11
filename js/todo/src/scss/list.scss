@@ -1,0 +1,16 @@
+.list {
+	.item {
+		&.completed {
+			.content {
+				text-decoration: line-through;
+			}
+		}
+		.content, .remove, .checkbox {
+			@include inline-block();
+		}
+
+		.remove, .checkbox {
+			padding-left: 10px;
+		}
+	}
+}

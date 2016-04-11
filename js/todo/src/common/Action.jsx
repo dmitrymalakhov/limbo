@@ -24,3 +24,11 @@ export const removeItem = (id) => {
 		id
 	}
 }
+
+export const сompleteItem = (id, completed) => {
+	return {
+		type: Const.COMPLETE_ITEM,
+		id,
+		completed
+	}
+}

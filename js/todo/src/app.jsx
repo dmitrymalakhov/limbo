@@ -8,8 +8,6 @@ import ToDoList from "./component/ToDoList.jsx";
 
 let store = createStore(Reducer);
 
-console.log(store);
-
 class App extends React.Component {
 	static childContextTypes = {
 		"store": React.PropTypes.object
@@ -27,7 +25,6 @@ class App extends React.Component {
 	}
 
 	render() {
-		console.log(this.context);
 		return <ToDoList/>;
 	}
 }
