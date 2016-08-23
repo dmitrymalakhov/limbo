@@ -19,10 +19,17 @@ var schema = new graphql.GraphQLSchema({
       user: {
         type: userType,
         args: {
-          id: { type: graphql.GraphQLString }
+          id: { type: graphql.GraphQLString },
+          name: { type: graphql.GraphQLString }
         },
         resolve: function(_, args) {
           return users[args.id];
+        }
+      },
+      users: {
+        type: new graphql.GraphQLList(userType),
+        resolve: function () {
+          return users;
         }
       }
     }
