@@ -1,0 +1,22 @@
+schema {
+  query: Query
+}
+
+type ExternalInfo {
+  price: Int
+  weight: Int
+}
+
+type Product {
+  name: String
+  steepingTime: Int
+  externalInfo: ExternalInfo
+}
+
+type Query {
+  store: Store
+}
+
+type Store {
+  products: [Product]
+}

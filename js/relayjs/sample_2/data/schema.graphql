@@ -1,0 +1,43 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Comment {
+  id: ID
+  text: String
+}
+
+input CreateCommentInput {
+  text: String!
+  clientMutationId: String!
+}
+
+type CreateCommentPayload {
+  story: Story
+  clientMutationId: String!
+}
+
+type Mutation {
+  createComment(input: CreateCommentInput!): CreateCommentPayload
+  removeComment(input: RemoveCommentInput!): RemoveCommentPayload
+}
+
+type Query {
+  story: Story
+}
+
+input RemoveCommentInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type RemoveCommentPayload {
+  deletedCommentId: ID
+  clientMutationId: String!
+}
+
+type Story {
+  comments: [Comment]
+  id: String
+}
