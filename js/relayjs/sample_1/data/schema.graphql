@@ -1,22 +1,54 @@
 schema {
   query: Query
+  mutation: Mutation
 }
 
-type ExternalInfo {
-  price: Int
-  weight: Int
+input AddEmployeeInput {
+  clientMutationId: String!
 }
 
-type Product {
+type AddEmployeePayload {
+  employee: Employee
+  viewer: User
+  clientMutationId: String!
+}
+
+type Employee {
+  id: ID!
   name: String
-  steepingTime: Int
-  externalInfo: ExternalInfo
+}
+
+type EmployeeConnection {
+  pageInfo: PageInfo!
+  edges: [EmployeeEdge]
+}
+
+type EmployeeEdge {
+  node: Employee
+  cursor: String!
+}
+
+type Mutation {
+  addEmployee(input: AddEmployeeInput!): AddEmployeePayload
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
 }
 
 type Query {
-  store: Store
+  viewer: User
+  node(id: ID!): Node
 }
 
-type Store {
-  products: [Product]
+type User {
+  id: ID!
+  employees(after: String, first: Int, before: String, last: Int): EmployeeConnection
 }

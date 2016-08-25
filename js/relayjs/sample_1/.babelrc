@@ -1,12 +1,9 @@
 {
   "passPerPreset": true,
-  "plugins": [
-    "transform-runtime"
-  ],
   "presets": [
     {
       "plugins": [
-        "./plugins/babelRelayPlugin"
+        "./build/babelRelayPlugin"
       ]
     },
     "react",
