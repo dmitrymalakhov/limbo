@@ -4,6 +4,7 @@ schema {
 }
 
 input AddEmployeeInput {
+  name: String!
   clientMutationId: String!
 }
 

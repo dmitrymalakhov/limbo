@@ -26,6 +26,7 @@ import {
   fromGlobalId,
   globalIdField,
   mutationWithClientMutationId,
+  cursorForObjectInConnection,
   nodeDefinitions,
 } from 'graphql-relay';
 
@@ -92,7 +93,7 @@ var {
   name: 'Employee', nodeType: GraphQLEmployee
 });
 
-var queryType = new GraphQLObjectType({
+var Root = new GraphQLObjectType({
   name: 'Query',
   fields: {
     viewer: {
@@ -105,7 +106,7 @@ var queryType = new GraphQLObjectType({
 
 var GraphQLAddEmployeeMutation = mutationWithClientMutationId({
   name: 'AddEmployee',
-  imputFields: {
+  inputFields: {
     name: { type: new GraphQLNonNull(GraphQLString) }
   },
   outputFields: {
@@ -124,13 +125,13 @@ var GraphQLAddEmployeeMutation = mutationWithClientMutationId({
       resolve: () => getUser()
     }
   },
-  mutateAndGetpayload: ({name}) => {
+  mutateAndGetPayload: ({name}) => {
     const id = addEmployee(name);
     return {id};
   }
 });
 
-var mutationType = new GraphQLObjectType({
+var Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
     addEmployee: GraphQLAddEmployeeMutation
@@ -138,6 +139,6 @@ var mutationType = new GraphQLObjectType({
 });
 
 export const Schema = new GraphQLSchema({
-  query: queryType,
-  mutation: mutationType
+  query: Root,
+  mutation: Mutation
 })

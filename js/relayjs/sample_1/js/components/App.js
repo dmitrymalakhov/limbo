@@ -8,7 +8,7 @@ import EmployeeList from './EmployeeList';
 class App extends React.Component {
   _addEmployee = () => {
     this.props.relay.commitUpdate(
-      new AddEmployeeMutation({name: "TEST", viewer: this.props.viewer})
+      new AddEmployeeMutation({name: Math.random() * (10000 - 5000) + 5000, viewer: this.props.viewer})
     )
   }
 
@@ -17,7 +17,6 @@ class App extends React.Component {
       <div>
         <EmployeeList data={this.props.viewer.employees.edges}/>
         <div>
-          <input/>
           <button onClick={this._addEmployee}>Add</button>
         </div>
       </div>
@@ -29,7 +28,7 @@ export default Relay.createContainer(App, {
   fragments: {
     viewer: () => Relay.QL`
       fragment on User {
-        employees (first: 10){
+        employees (first: 100){
           edges {
             node {
               id,

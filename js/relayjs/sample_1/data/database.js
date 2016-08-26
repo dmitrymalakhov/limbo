@@ -34,7 +34,7 @@ export function getUser() {
 }
 
 export function getEmployee(id) {
-  return employeeByID.find(item => item.id === id);
+  return employeeByID[id];
 }
 
 export function getEmployees() {
