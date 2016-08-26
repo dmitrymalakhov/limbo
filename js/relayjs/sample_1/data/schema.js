@@ -52,21 +52,21 @@ const {nodeInterface, nodeField} = nodeDefinitions(
   },
   (obj) => {
     if(obj instanceof User) {
-      return userType;
+      return GraphQLUser;
     } else if(obj instanceof Employee) {
-      return employeeType;
+      return GraphQLEmployee;
     } else {
       return null;
     }
   }
 );
 
-var userType = new GraphQLObjectType({
+var GraphQLUser = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: globalIdField('User'),
     employees: {
-      type: employeeConnection,
+      type: EmployeeConnection,
       args: connectionArgs,
       resolve: (user, args) => connectionFromArray(getEmployees(), args)
     }
@@ -74,7 +74,7 @@ var userType = new GraphQLObjectType({
   interface: [nodeInterface]
 });
 
-var employeeType = new GraphQLObjectType({
+var GraphQLEmployee = new GraphQLObjectType({
   name: 'Employee',
   fields: () => ({
     id: globalIdField('Employee'),
@@ -85,31 +85,32 @@ var employeeType = new GraphQLObjectType({
   interface: [nodeInterface]
 });
 
-var {connectionType: employeeConnection} = connectionDefinitions({
-  name: 'Employee', nodeType: employeeType
+var {
+  connectionType: EmployeeConnection,
+  edgeType: GraphQLEmployeeEdge
+} = connectionDefinitions({
+  name: 'Employee', nodeType: GraphQLEmployee
 });
 
 var queryType = new GraphQLObjectType({
   name: 'Query',
   fields: {
     viewer: {
-      type: userType,
+      type: GraphQLUser,
       resolve: () => getUser()
     },
     node: nodeField
   }
 });
 
-var addEmployeeMutation = mutationWithClientMutationId({
+var GraphQLAddEmployeeMutation = mutationWithClientMutationId({
   name: 'AddEmployee',
   imputFields: {
-    name: {
-      type: new GraphQLNonNull(GraphQLString)
-    }
+    name: { type: new GraphQLNonNull(GraphQLString) }
   },
   outputFields: {
-    employee: {
-      type: employeeType,
+    employeeEdge: {
+      type: GraphQLEmployeeEdge,
       resolve: ({id}) => {
         const employee = getEmployee(id);
         return {
@@ -119,7 +120,7 @@ var addEmployeeMutation = mutationWithClientMutationId({
       }
     },
     viewer: {
-      type: userType,
+      type: GraphQLUser,
       resolve: () => getUser()
     }
   },
@@ -132,7 +133,7 @@ var addEmployeeMutation = mutationWithClientMutationId({
 var mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    addEmployee: addEmployeeMutation
+    addEmployee: GraphQLAddEmployeeMutation
   })
 });
 

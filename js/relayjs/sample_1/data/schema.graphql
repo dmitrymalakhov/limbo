@@ -8,7 +8,7 @@ input AddEmployeeInput {
 }
 
 type AddEmployeePayload {
-  employee: Employee
+  employeeEdge: EmployeeEdge
   viewer: User
   clientMutationId: String!
 }

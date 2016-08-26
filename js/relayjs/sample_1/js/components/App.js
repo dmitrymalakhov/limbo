@@ -8,7 +8,7 @@ import EmployeeList from './EmployeeList';
 class App extends React.Component {
   _addEmployee = () => {
     this.props.relay.commitUpdate(
-      new AddEmployeeMutation({name: "TEST"})
+      new AddEmployeeMutation({name: "TEST", viewer: this.props.viewer})
     )
   }
 
@@ -37,6 +37,7 @@ export default Relay.createContainer(App, {
             },
           },
         },
+        ${AddEmployeeMutation.getFragment('viewer')}
       }
     `,
   },

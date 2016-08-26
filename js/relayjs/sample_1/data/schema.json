@@ -463,12 +463,12 @@
           "description": null,
           "fields": [
             {
-              "name": "employee",
+              "name": "employeeEdge",
               "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Employee",
+                "name": "EmployeeEdge",
                 "ofType": null
               },
               "isDeprecated": false,

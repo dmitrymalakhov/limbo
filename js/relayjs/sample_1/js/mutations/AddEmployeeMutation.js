@@ -20,7 +20,7 @@ export default class AddEmployeeMutation extends Relay.Mutation {
           employees
         }
       }
-    `
+    `;
   }
   getConfigs() {
     return [{
@@ -29,11 +29,24 @@ export default class AddEmployeeMutation extends Relay.Mutation {
       parentID: this.props.viewer.id,
       connectionName: 'employees',
       edgeName: 'employeeEdge',
+      rangeBehaviors: () => {
+        return 'append';
+      }
     }];
   }
   getVariables() {
     return {
-      text: this.props.text,
+      name: this.props.name
+    };
+  }
+
+  getOptimisticResponse() {
+    return {
+      employeeEdge: {
+        node: {
+          name: this.props.name,
+        },
+      }
     };
   }
 }
