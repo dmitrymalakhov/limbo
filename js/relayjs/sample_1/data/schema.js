@@ -131,10 +131,33 @@ var GraphQLAddEmployeeMutation = mutationWithClientMutationId({
   }
 });
 
+var GraphQLRemoveEmployeeMutation = mutationWithClientMutationId({
+  name: 'RemoveEmployee',
+  inputFields: {
+    id: { type: new GraphQLNonNull(GraphQLID) }
+  },
+  outputFields: {
+    deletedEmployeeId: {
+      type: GraphQLID,
+      resolve: ({id}) => id
+    },
+    viewer: {
+      type: GraphQLUser,
+      resolve: () => getUser()
+    }
+  },
+  mutateAndGetPayload: ({id}) => {
+    const _id = fromGlobalId(id).id;
+    removeEmployee(_id);
+    return {_id};
+  }
+})
+
 var Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    addEmployee: GraphQLAddEmployeeMutation
+    addEmployee: GraphQLAddEmployeeMutation,
+    removeEmployee: GraphQLRemoveEmployeeMutation
   })
 });
 

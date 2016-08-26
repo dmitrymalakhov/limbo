@@ -3,7 +3,7 @@ import Relay from 'react-relay';
 
 import AddEmployeeMutation from '../mutations/AddEmployeeMutation';
 
-import EmployeeList from './EmployeeList';
+import EmployeeList from './EmployeeList.js';
 
 class App extends React.Component {
   _addEmployee = () => {
@@ -15,7 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <EmployeeList data={this.props.viewer.employees.edges}/>
+        <EmployeeList viewer={this.props.viewer}/>
         <div>
           <button onClick={this._addEmployee}>Add</button>
         </div>
@@ -28,15 +28,8 @@ export default Relay.createContainer(App, {
   fragments: {
     viewer: () => Relay.QL`
       fragment on User {
-        employees (first: 100){
-          edges {
-            node {
-              id,
-              name,
-            },
-          },
-        },
         ${AddEmployeeMutation.getFragment('viewer')}
+        ${EmployeeList.getFragment('viewer')}
       }
     `,
   },

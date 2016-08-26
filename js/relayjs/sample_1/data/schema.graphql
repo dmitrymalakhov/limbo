@@ -31,6 +31,7 @@ type EmployeeEdge {
 
 type Mutation {
   addEmployee(input: AddEmployeeInput!): AddEmployeePayload
+  removeEmployee(input: RemoveEmployeeInput!): RemoveEmployeePayload
 }
 
 interface Node {
@@ -47,6 +48,17 @@ type PageInfo {
 type Query {
   viewer: User
   node(id: ID!): Node
+}
+
+input RemoveEmployeeInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type RemoveEmployeePayload {
+  deletedEmployeeId: ID
+  viewer: User
+  clientMutationId: String!
 }
 
 type User {
