@@ -21,10 +21,11 @@ export default Relay.createContainer(EmployeeList, {
           edges {
             node {
               id,
-              name,
+              ${Employee.getFragment('employee')},
             },
           },
-        }
+        },
+        ${Employee.getFragment('viewer')}
       }
     `,
   },

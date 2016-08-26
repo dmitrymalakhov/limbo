@@ -40,3 +40,7 @@ export function getEmployee(id) {
 export function getEmployees() {
   return employees;
 }
+
+export function removeEmployee(id) {
+  return employees.filter(item => item.id !== id);
+}

@@ -20,7 +20,10 @@ export default class RemoveEmployeeMutation extends Relay.Mutation {
   getFatQuery() {
     return Relay.QL `
       fragment on RemoveEmployeePayload @relay(pattern: true) {
-        deletedEmployeeId
+        deletedEmployeeId,
+        viewer {
+          id
+        }
       }
     `
   }

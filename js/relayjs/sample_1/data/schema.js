@@ -35,6 +35,7 @@ import {
   Employee,
   getUser,
   addEmployee,
+  removeEmployee,
   getEmployee,
   getEmployees
 } from './database';
