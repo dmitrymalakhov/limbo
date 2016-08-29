@@ -16,10 +16,6 @@ class App extends React.Component {
     )
   }
 
-  _updateEmployee = () => {
-    
-  }
-
   render() {
     return (
       <div>
@@ -27,7 +23,6 @@ class App extends React.Component {
         <div>
           <input onChange={(e) => {this.setState({text: e.target.value})}}/>
           <button onClick={this._addEmployee}>Add</button>
-          <button onClick={this._updateEmployee}>Update</button>
         </div>
       </div>
     );

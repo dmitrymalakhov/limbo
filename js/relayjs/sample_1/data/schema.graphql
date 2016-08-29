@@ -18,6 +18,7 @@ type Employee {
   id: ID!
   name: String
   phone: String
+  tags(after: String, first: Int, before: String, last: Int): TagConnection
 }
 
 type EmployeeConnection {
@@ -62,7 +63,23 @@ type RemoveEmployeePayload {
   clientMutationId: String!
 }
 
+type Tag {
+  id: ID!
+  name: String
+}
+
+type TagConnection {
+  pageInfo: PageInfo!
+  edges: [TagEdge]
+}
+
+type TagEdge {
+  node: Tag
+  cursor: String!
+}
+
 type User {
   id: ID!
   employees(after: String, first: Int, before: String, last: Int): EmployeeConnection
+  tags(after: String, first: Int, before: String, last: Int): TagConnection
 }
