@@ -17,6 +17,7 @@ type AddEmployeePayload {
 type Employee {
   id: ID!
   name: String
+  phone: String
 }
 
 type EmployeeConnection {

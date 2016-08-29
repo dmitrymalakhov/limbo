@@ -10,8 +10,12 @@ class Employee extends React.Component {
     )
   }
 
+  _onClick = () => {
+    this.props.onClick && this.props.onClick(this.props.employee);
+  }
+
   render() {
-    return <div>
+    return <div onClick={this._onClick}>
       {this.props.employee.name}
       <button onClick={this._removeEmployee}>Remove</button>
     </div>
@@ -23,16 +27,9 @@ export default Relay.createContainer(Employee, {
     employee: () => Relay.QL `
       fragment on Employee {
         name,
+        phone,
         ${RemoveEmployeeMutation.getFragment('employee')}
       }
     `,
-    viewer: () => Relay.QL `
-      fragment on User {
-        ${RemoveEmployeeMutation.getFragment('viewer')}
-      }
-    `
   }
 });
-
-
-

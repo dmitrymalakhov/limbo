@@ -81,7 +81,12 @@ var GraphQLEmployee = new GraphQLObjectType({
   fields: () => ({
     id: globalIdField('Employee'),
     name: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: obj => obj.name
+    },
+    phone: {
+      type: GraphQLString,
+      resolve: obj => obj.phone
     }
   }),
   interface: [nodeInterface]
@@ -127,7 +132,7 @@ var GraphQLAddEmployeeMutation = mutationWithClientMutationId({
     }
   },
   mutateAndGetPayload: ({name}) => {
-    const id = addEmployee(name);
+    const id = addEmployee({name});
     return {id};
   }
 });
@@ -150,7 +155,7 @@ var GraphQLRemoveEmployeeMutation = mutationWithClientMutationId({
   mutateAndGetPayload: ({id}) => {
     const _id = fromGlobalId(id).id;
     removeEmployee(_id);
-    return {_id};
+    return {id};
   }
 })
 

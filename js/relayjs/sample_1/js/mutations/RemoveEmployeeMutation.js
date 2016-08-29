@@ -4,14 +4,9 @@ export default class RemoveEmployeeMutation extends Relay.Mutation {
   static fragments = {
     employee: () => Relay.QL `
       fragment on Employee {
-        id
+        id,
       }
     `,
-    viewer: () => Relay.QL `
-      fragment on User {
-        id
-      }
-    `
   };
 
   getMutation() {

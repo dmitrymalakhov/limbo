@@ -15,13 +15,14 @@ var employees = [];
 var employeeByID = {};
 var employeeNextId = 0;
 
-addEmployee('name1');
-addEmployee('name2');
+addEmployee({name: 'name1', phone: '80000000000'});
+addEmployee({name: 'name2', phone: '81111111111'});
 
-export function addEmployee(name) {
+export function addEmployee(attr) {
   const employee = new Employee();
   employee.id = `${employeeNextId++}`;
-  employee.name = name;
+  employee.name = attr.name;
+  employee.phone = attr.phone || '8xxxxxxxxxx';
 
   employeeByID[employee.id] = employee;
   employees.push(employee);
@@ -42,5 +43,6 @@ export function getEmployees() {
 }
 
 export function removeEmployee(id) {
-  return employees.filter(item => item.id !== id);
+  employees = employees.filter(item => item.id !== id);
+  return employees;
 }
