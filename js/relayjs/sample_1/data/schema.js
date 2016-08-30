@@ -206,7 +206,7 @@ var Mutation = new GraphQLObjectType({
   })
 });
 
-export const Schema = new GraphQLSchema({
+export const schema = new GraphQLSchema({
   query: Root,
   mutation: Mutation
 })
