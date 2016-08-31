@@ -10,22 +10,22 @@ export default class ComponentList extends React.Component {
   componentDidMount() {
     let _items = {};
 
-    Library.forEach((item) => {
-      if(!_items[item.type]) {
-        _items[item.type] = [];
+    for(let key in Library) {
+      if(!_items[Library[key]['type']]) {
+        _items[Library[key]['type']] = [];
       }
 
-      _items[item.type].push(item);
-    });
+      _items[Library[key]['type']].push(Library[key]);
+    }
 
-    for(key in _item) {
+    for(let key in _items) {
       _components.push(
-        <ComponentCategory data={_item[key]} title={key}/>
+        <ComponentCategory data={_items[key]} title={key}/>
       );
     }
   }
   render() {
-    return <div>
+    return <div className='component-list'>
       {_components}
     </div>;
   }
