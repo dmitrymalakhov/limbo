@@ -2,6 +2,6 @@ import React, { Component } from 'react';
 
 export default class ComponentItem extends React.Component {
   render() {
-    return <div></div>;
+    return <div>{this.props.name}</div>;
   }
 }
