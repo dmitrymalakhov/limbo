@@ -5,9 +5,7 @@ import Library from './Library';
 var _components = []
 
 export default class ComponentList extends React.Component {
-  ;
-
-  componentDidMount() {
+  componentWillMount() {
     let _items = {};
 
     for(let key in Library) {
@@ -20,10 +18,11 @@ export default class ComponentList extends React.Component {
 
     for(let key in _items) {
       _components.push(
-        <ComponentCategory data={_items[key]} title={key}/>
+        <ComponentCategory data={_items[key]} title={key} key={key}/>
       );
     }
   }
+
   render() {
     return <div className='component-list'>
       {_components}

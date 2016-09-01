@@ -15,17 +15,19 @@ export default class ProxyIFrame extends Component {
   };
 
   componentDidMount() {
-    let iframe = ReactDOM.findDOMNode(this);
+    const domNode = ReactDOM.findDOMNode(this);
 
-    iframe.onload = () => {
-      let frameBody = iframe.contentDocument.body,
-          el = document.createElement('div');
+    domNode.onload = (() => {
+      this.contentDocument = domNode.contentDocument;
+      this.contentWindow = domNode.contentWindow;
 
-      frameBody.appendChild(el);
+      let el = document.createElement('div');
+
+      this.contentDocument.body.appendChild(el);
       this.el = el;
 
       this._updateIFrameContents();
-    }
+    })
     
   }
 

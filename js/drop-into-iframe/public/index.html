@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+  .droptarget {
+      float: left;
+      width: 100px;
+      height: 35px;
+      margin: 15px;
+      padding: 10px;
+      border: 1px solid #aaaaaa;
+  }
+</style>
+<script>
+  function dragStart(event) {
+      event.dataTransfer.setData("Text", event.target.id);
+      document.getElementById("output").innerHTML = "Started";
+  }
+
+  function dragEnd(event) {
+      document.getElementById("output").innerHTML = "Finished";
+  }
+
+  function allowDrop(event) {
+      event.preventDefault();
+  }
+
+  function drop(event) {
+      event.preventDefault();
+      var data = event.dataTransfer.getData("Text");
+      console.log(data);
+  }
+</script>
+</head>
+<body>
+
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <p ondragstart="dragStart(event)" ondragend="dragEnd(event)" draggable="true" id="dragtarget">Drag me!</p>
+</div>
+
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<p id="output"></p>
+
+<iframe src="./static"/>
+
+</body>
+</html>
+
