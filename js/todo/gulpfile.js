@@ -6,7 +6,7 @@ var source = require('vinyl-source-stream');
 var sass = require('gulp-ruby-sass');
 
 gulp.task("browserify", function() {
-	browserify(['./src/app.jsx'])
+	browserify(['./src/index.js'])
 	.transform(
 		["babelify", {presets: ["es2015", "react", "stage-1", "stage-2"]}]
 	)
