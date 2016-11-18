@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Toggle extends React.Component {
+class Toggle extends Component {
 	constructor(props) {
 		super(props);
 		this.displayName = 'Toggle';

@@ -1,0 +1,9 @@
+exports[`<Button/> renders correctly and call onClick if click 1`] = `
+<button
+  onClick={[Function]} />
+`;
+
+exports[`<Button/> renders correctly with default props 1`] = `
+<button
+  onClick={[Function]} />
+`;

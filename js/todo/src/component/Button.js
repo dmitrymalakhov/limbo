@@ -1,6 +1,8 @@
- import React from 'react';
+'use strict';
 
-class Button extends React.Component {
+import React, { Component } from 'react';
+
+class Button extends Component {
 	constructor(props) {
 		super(props);
 		this.displayName = 'Button';
