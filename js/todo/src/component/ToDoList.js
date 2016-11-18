@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from "react";
 import { connect } from 'react-redux';
 
 import {
-    addItem,
-    changeInput,
-    removeItem,
-    сompleteItem,
-    changeFilter,
-    changeSort
+	addItem,
+	changeInput,
+	removeItem,
+	сompleteItem,
+	changeFilter,
+	changeSort
 } from '../actions/app';
 
 import List from "./List";
@@ -44,36 +44,48 @@ class ToDoList extends Component {
 	render() {
 		return <div className="todolist">
 			<div className="form">
-				<input onChange={ this.handlerInput } value={ this.props.app.content }/>
-				<Button title="Add Item" onClick={ this.addItem }/>
+				<input onChange={ this.handlerInput } value={ this.props.app.content } />
+				<Button title="Add Item" onClick={ this.addItem } />
 			</div>
 			<div className="toolbar">
 				<div>
-					Filter by: <Toggle onChange={this.handlerFilter} data={[{k: "all", v: "All"}, {k: "completed", v: "Completed"}, {k: "uncompleted", v: "Uncompleted"}]}/>
+					Filter by:
+					<Toggle
+						onChange={this.handlerFilter}
+						data={[
+							{k: "all", v: "All"},
+							{k: "completed", v: "Completed"},
+							{k: "uncompleted", v: "Uncompleted"}
+						]}
+					/>
 				</div>
 				<div>
-					Sort by: <Toggle onChange={this.handleSort} data={[{k: "id", v: "ID"}, {k: "content", v: "Content"}]}/>
+					Sort by:
+					<Toggle
+						onChange={this.handleSort}
+						data={[{k: "id", v: "ID"}, {k: "content", v: "Content"}]}
+					/>
 				</div>
 			</div>
-			<List items={ this.props.app.items.filter((item) => { return item.show == true }) }/>
+			<List items={ this.props.app.items.filter((item) => { return item.show == true }) } />
 		</div>;
 	}
 }
 
 const mapStateToProps = (state) => ({
-    app: state.app
+	app: state.app
 });
 
 const mapDispatchToProps = dispatch => ({
-    onAddItem: content => void dispatch(addItem(content)),
-    onChangeInput: value => void dispatch(changeInput(value)),
-    onChangeFilter: k => void dispatch(changeFilter(k)),
-    onChangeSort: k => void dispatch(changeSort(k))
+	onAddItem: content => void dispatch(addItem(content)),
+	onChangeInput: value => void dispatch(changeInput(value)),
+	onChangeFilter: k => void dispatch(changeFilter(k)),
+	onChangeSort: k => void dispatch(changeSort(k))
 });
 
 ToDoList.displayName = "ToDoList";
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(ToDoList);

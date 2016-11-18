@@ -38195,14 +38195,20 @@ var ToDoList = function (_Component) {
 					_react2.default.createElement(
 						'div',
 						null,
-						'Filter by: ',
-						_react2.default.createElement(_Toggle2.default, { onChange: this.handlerFilter, data: [{ k: "all", v: "All" }, { k: "completed", v: "Completed" }, { k: "uncompleted", v: "Uncompleted" }] })
+						'Filter by:',
+						_react2.default.createElement(_Toggle2.default, {
+							onChange: this.handlerFilter,
+							data: [{ k: "all", v: "All" }, { k: "completed", v: "Completed" }, { k: "uncompleted", v: "Uncompleted" }]
+						})
 					),
 					_react2.default.createElement(
 						'div',
 						null,
-						'Sort by: ',
-						_react2.default.createElement(_Toggle2.default, { onChange: this.handleSort, data: [{ k: "id", v: "ID" }, { k: "content", v: "Content" }] })
+						'Sort by:',
+						_react2.default.createElement(_Toggle2.default, {
+							onChange: this.handleSort,
+							data: [{ k: "id", v: "ID" }, { k: "content", v: "Content" }]
+						})
 					)
 				),
 				_react2.default.createElement(_List2.default, { items: this.props.app.items.filter(function (item) {
