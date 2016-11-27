@@ -14,6 +14,9 @@
     "todo",
     "list"
   ],
+  "files": [
+    "index.js"
+  ],
   "author": "DMal",
   "license": "MIT",
   "bugs": {
@@ -33,18 +36,18 @@
     "jest": "^16.0.2",
     "jest-cli": "^16.0.2",
     "path": "^0.12.7",
-    "react-test-renderer": "^15.4.0",
+    "react-test-renderer": "^15.4.1",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "express": "^4.14.0",
+    "lodash": "^4.17.2",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
-    "express": "^4.14.0",
-    "lodash": "^4.9.0",
     "react-redux": "^4.4.6",
-    "redux": "^3.4.0"
+    "redux": "^3.6.0"
   },
   "jest": {
     "moduleFileExtensions": [
