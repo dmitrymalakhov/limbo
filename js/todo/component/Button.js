@@ -1,20 +1,29 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { noop } from '../utils/misc';
 
-class Button extends Component {
-  constructor(props) {
-    super(props);
-    this.displayName = 'Button';
-  }
+export default class Button extends Component {
+  static displayName = 'Button';
+  static propTypes = {
+    title: PropTypes.string,
+    onClick: PropTypes.func,
+  };
 
-  onClick = () => {
-    this.props.onClick && this.props.onClick();
+  static defaultProps = {
+    title: '',
+    onClick: noop,
+  };
+
+  _handleClick = () => {
+    this.props.onClick();
   }
 
   render() {
-    return <button onClick={this.onClick}>{this.props.title}</button>;
+    return (
+      <button onClick={this._handleClick}>
+        {this.props.title}
+      </button>
+    );
   }
 }
-
-export default Button;

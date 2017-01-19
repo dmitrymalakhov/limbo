@@ -2,15 +2,15 @@ import express from 'express';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import config from "./webpack.config.js";
+import config from './webpack.config.js';
 
 const APP_PORT = 3000;
 
 const compiler = webpack(config);
 const app = new WebpackDevServer(compiler, {
   contentBase: '/public/',
-  stats: {colors: true},
-  hot: true
+  stats: { colors: true },
+  hot: true,
 });
 
 app.use('/', express.static(path.resolve(__dirname, 'public')));

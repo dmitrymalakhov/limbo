@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { noop } from '../utils/misc';
 import Checkbox from './Checkbox';
 
 import {
@@ -9,6 +10,7 @@ import {
 } from '../actions/app';
 
 class Item extends Component {
+  static displayName = 'Item';
   static propTypes = {
     content: PropTypes.string,
     completed: PropTypes.bool,
@@ -21,17 +23,15 @@ class Item extends Component {
     content: '',
     completed: false,
     id: 0,
+    onRemoveItem: noop,
+    onCompleteItem: noop,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
-  handlerRemove = () => {
+  _handleRemove = () => {
     this.props.onRemoveItem(this.props.id);
   }
 
-  handlerComplete = () => {
+  _handleComplete = () => {
     const { id, completed } = this.props;
 
     this.props.onCompleteItem(id, !completed);
@@ -42,26 +42,24 @@ class Item extends Component {
 
     const className = ['item'];
 
-    completed && className.push('completed');
+    if (completed)
+      className.push('completed');
 
-    return (<div className={className.join(' ')}>
-      <div className="content">{content}</div>
-      <div className="remove" onClick={this.handlerRemove}>X</div>
-      <Checkbox checked={completed} onChange={this.handlerComplete} />
-    </div>);
+    return (
+      <div className={className.join(' ')}>
+        <div className="content">{content}</div>
+        <div className="remove" onClick={this._handleRemove}>X</div>
+        <Checkbox checked={completed} onChange={this._handleComplete} />
+      </div>
+    );
   }
 }
 
-
-const mapStateToProps = state => ({});
-
+const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   onRemoveItem: id => void dispatch(removeItem(id)),
   onCompleteItem: (id, completed) => void dispatch(сompleteItem(id, completed)),
-    
 });
-
-Item.displayName = 'Item';
 
 export default connect(
     mapStateToProps,

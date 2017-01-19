@@ -1,18 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { noop } from '../utils/misc';
 
-class Checkbox extends Component {
-  constructor(props) {
-    super(props);
-    this.displayName = 'Checkbox';
-  }
+export default class Checkbox extends Component {
+  static displayName = 'Checkbox';
+  static propTypes = {
+    checked: PropTypes.bool,
+    onChange: PropTypes.func,
+  };
 
-  onChange = () => {
-    this.props.onChange && this.props.onChange();
+  static defaultProps = {
+    checked: false,
+    onChange: noop,
+  };
+
+  _handleChange = () => {
+    this.props.onChange();
   }
 
   render() {
-    return <input className="checkbox" checked={this.props.checked} onChange={this.onChange} type="checkbox" />;
+    return (
+      <input
+        className="checkbox"
+        checked={this.props.checked}
+        onChange={this._handleChange}
+        type="checkbox"
+      />
+    );
   }
 }
-
-export default Checkbox;

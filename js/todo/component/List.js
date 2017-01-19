@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Item from './Item';
 
-class List extends Component {
-  constructor(props) {
-    super(props);
-    this.displayName = 'List';
-  }
+export default class List extends Component {
+  static displayName = 'List';
+  static propTypes = {
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        content: PropTypes.string,
+        completed: PropTypes.bool,
+        show: PropTypes.bool,
+      }),
+    ),
+  };
 
-  getItems() {
-    const items = [];
+  static defaultProps = {
+    items: [],
+  };
 
-    for (let i = 0, len = this.props.items.length; i < len; i++) {
-      const item = this.props.items[i];
-      items.push(<Item key={i} content={item.content} id={item.id} completed={item.completed} />);
-    }
-
-    return items;
+  _renderItems() {
+    return this.props.items.map(item => (
+      <Item
+        key={item.id}
+        content={item.content}
+        id={item.id}
+        completed={item.completed}
+      />
+    ));
   }
 
   render() {
-    return (<div className="list">
-      {this.getItems()}
-    </div>);
+    const items = this._renderItems();
+
+    return (
+      <div className="list">
+        {items}
+      </div>
+    );
   }
 }
-
-export default List;
