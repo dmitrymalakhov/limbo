@@ -1,15 +1,19 @@
 'use strict';
 
-import React, { Component, PropTypes } from "react";
+import React, {Component, PropTypes} from "react";
 import ReactDOM from "react-dom";
 
-import { createStore } from "redux";
-import { Provider } from "react-redux";
+import {createStore, applyMiddleware} from "redux";
+import {Provider} from "react-redux";
 
 import rootReducer from "./reducers";
+import {keeper} from "./middleware";
 import ToDoList from "./component/ToDoList.js";
 
-const store = createStore(rootReducer);
+const store = createStore(
+	rootReducer,
+	applyMiddleware(keeper),
+);
 
 ReactDOM.render(
 	<Provider store={store}>
