@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import config from './webpack.config.js';
 
-const APP_PORT = 3000;
+const APP_PORT = 8090;
 
 const compiler = webpack(config);
 const app = new WebpackDevServer(compiler, {

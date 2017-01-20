@@ -58,7 +58,7 @@ class ToDoList extends Component {
     this.props.onChangeFilter(k);
   }
 
-  _handleFilter = k => {
+  _handleSort = k => {
     this.props.onChangeSort(k);
   }
 
@@ -89,7 +89,7 @@ class ToDoList extends Component {
           <div>
             Sort by:
             <Toggle
-              onChange={this._handleFilter}
+              onChange={this._handleSort}
               data={[
                 { k: 'id', v: 'ID' },
                 { k: 'content', v: 'Content' },

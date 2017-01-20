@@ -22,7 +22,7 @@ export const removeItem = id => ({
   id,
 });
 
-export const сompleteItem = (id, completed) => ({
+export const completeItem = (id, completed) => ({
   type: COMPLETE_ITEM,
   id,
   completed,
