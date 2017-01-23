@@ -1,9 +1,15 @@
 exports[`<Button/> renders correctly and call onClick if click 1`] = `
 <button
-  onClick={[Function]} />
+  className="itEXFo"
+  onClick={[Function]}>
+  
+</button>
 `;
 
 exports[`<Button/> renders correctly with default props 1`] = `
 <button
-  onClick={[Function]} />
+  className="itEXFo"
+  onClick={[Function]}>
+  
+</button>
 `;

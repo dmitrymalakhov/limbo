@@ -1,7 +1,13 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
+
 import { noop } from '../utils/misc';
+
+const StyleButton = styled.button`
+  background: #FAF;
+`;
 
 export default class Button extends Component {
   static displayName = 'Button';
@@ -21,9 +27,9 @@ export default class Button extends Component {
 
   render() {
     return (
-      <button onClick={this._handleClick}>
+      <StyleButton onClick={this._handleClick}>
         {this.props.title}
-      </button>
+      </StyleButton>
     );
   }
 }
