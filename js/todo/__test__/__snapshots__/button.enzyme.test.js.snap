@@ -1,0 +1,12 @@
+exports[`<Button/> renders correctly with default props 1`] = `
+<Button
+  onClick={[Function]}
+  title="">
+  <styled.button
+    onClick={[Function]}>
+    <button
+      className="itEXFo"
+      onClick={[Function]} />
+  </styled.button>
+</Button>
+`;
