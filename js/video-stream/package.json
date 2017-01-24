@@ -43,6 +43,8 @@
     "react-addons-test-utils": "^15.4.2",
     "react-test-renderer": "^15.4.2",
     "redux-devtools": "^3.3.2",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.2.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   },

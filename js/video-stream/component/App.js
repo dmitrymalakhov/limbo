@@ -41,7 +41,7 @@ const defaultProps = {
   onChangeView: noop,
 };
 
-export class App extends Component {
+class App extends Component {
   _handleChangeView = index => {
     this.props.onChangeView(index);
   }
@@ -105,11 +105,11 @@ const mapDispatchToProps = dispatch => ({
   onChangeView: indexView => void dispatch(changeView(indexView)),
 });
 
+App.propTypes = propTypes;
+App.defaultProps = defaultProps;
+App.displayName = 'App';
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(App);
-
-App.propTypes = propTypes;
-App.defaultProps = defaultProps;
-App.displayName = 'App';

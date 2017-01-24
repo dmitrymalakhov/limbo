@@ -7,10 +7,11 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import rootReducer from './reducers';
-import { App } from './component/App';
+import App from './component/App';
 
 const store = createStore(
   rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 const videoList = [
@@ -26,7 +27,9 @@ const videoList = [
 
 ReactDOM.render(
   <Provider store={store}>
-    <App videoList={videoList} />
+    <div>
+      <App videoList={videoList} />
+    </div>
   </Provider>,
   document.getElementById('app'),
 );
