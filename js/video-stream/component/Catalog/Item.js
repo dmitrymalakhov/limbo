@@ -1,3 +1,5 @@
+'use strict';
+
 import React, { Component, PropTypes } from 'react';
 import { ListItem } from 'material-ui/List';
 

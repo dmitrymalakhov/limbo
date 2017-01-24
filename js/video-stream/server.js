@@ -1,3 +1,5 @@
+'use strict';
+
 import express from 'express';
 import path from 'path';
 import webpack from 'webpack';

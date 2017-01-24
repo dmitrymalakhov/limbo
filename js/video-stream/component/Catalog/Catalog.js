@@ -1,7 +1,10 @@
+'use strict';
+
 import React, { PropTypes, Component } from 'react';
 import { List } from 'material-ui/List';
 
 import { Item } from './Item';
+import { noop } from '../../utils/misc';
 
 const propTypes = {
   list: PropTypes.arrayOf(
@@ -10,15 +13,17 @@ const propTypes = {
       src: PropTypes.string,
     }),
   ),
+  onChange: PropTypes.func,
 };
 
 const defaultProps = {
   list: '',
+  onChange: noop,
 };
 
 export class Catalog extends Component {
   _handleClick = index => {
-    console.log(index);
+    this.props.onChange(index);
   }
 
   render() {
