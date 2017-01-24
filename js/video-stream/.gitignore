@@ -1,0 +1,5 @@
+.sass-cache
+node_modules
+tmp
+*.log
+src/__test__/__coverage__/*
