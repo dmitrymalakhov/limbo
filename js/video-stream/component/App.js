@@ -13,7 +13,9 @@ import { Video } from './Video';
 import { noop } from '../utils/misc';
 
 import {
+  changeVideo,
   changeView,
+  playVideo,
 } from '../actions/app';
 
 const muiTheme = getMuiTheme({
@@ -32,6 +34,8 @@ const propTypes = {
     }),
   ),
   onChangeView: PropTypes.func,
+  onPlayVideo: PropTypes.func,
+  onChangeVideo: PropTypes.func,
 };
 
 const defaultProps = {
@@ -39,15 +43,25 @@ const defaultProps = {
   currentView: 0,
   videoList: [],
   onChangeView: noop,
+  onPlayVideo: noop,
+  onChangeVideo: noop,
 };
+
+const CATALOG_VIEW = 0,
+  PLAYER_VIEW = 1;
 
 class App extends Component {
   _handleChangeView = index => {
-    this.props.onChangeView(index);
+    this.props.onChangeView(PLAYER_VIEW);
+    this.props.onChangeVideo(index);
   }
 
   _getCurrentVideo() {
     return this.props.videoList[this.props.currentVideo];
+  }
+  
+  _handlePlayVideo = () => {
+    this.props.onPlayVideo();
   }
 
   _renderCatalog() {
@@ -67,7 +81,7 @@ class App extends Component {
     return (
       <div>
         <Video src={video.src} />
-        <FlatButton label="Play" />
+        <FlatButton label="Play" onClick={this._handlePlayVideo} />
         <FlatButton label="Pause" />
         <FlatButton label="Stop" />
       </div>
@@ -99,10 +113,13 @@ class App extends Component {
 const mapStateToProps = state => ({
   currentView: state.app.currentView,
   currentVideo: state.app.currentVideo,
+  videoMode: state.app.videoMode,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChangeView: indexView => void dispatch(changeView(indexView)),
+  onChangeView: index => void dispatch(changeView(index)),
+  onChangeVideo: index => void dispatch(changeVideo(index)),
+  onPlayVideo: () => void dispatch(playVideo()),
 });
 
 App.propTypes = propTypes;

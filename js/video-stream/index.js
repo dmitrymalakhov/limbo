@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import rootReducer from './reducers';
 import App from './component/App';
 
@@ -24,6 +26,8 @@ const videoList = [
     src: 'http://jell.yfish.us/media/jellyfish-3-mbps-hd-hevc.mkv',
   },
 ];
+
+injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
