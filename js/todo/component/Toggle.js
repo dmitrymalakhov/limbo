@@ -1,31 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { noop } from '../utils/misc';
+
+import ToogleItem from './ToogleItem';
 
 class Toggle extends Component {
-  constructor(props) {
-    super(props);
-    this.displayName = 'Toggle';
-  }
+  static displayName = 'Toggle';
+  static propTypes = {
+    data: PropTypes.arrayOf(PropTypes.shape({
+      k: PropTypes.string,
+      v: PropTypes.string,
+    })),
+    onChange: PropTypes.func,
+  };
 
-  handleClick = k => {
-    this.props.onChange && this.props.onChange(k);
+  static defaultProps = {
+    data: [],
+    onChange: noop,
+  };
+
+  _handleClick = k => {
+    this.props.onChange(k);
   }
 
   render() {
-    const items = [];
+    const items = this.props.data.map(item => (
+      <ToogleItem key={item.k} k={item.k} v={item.v} />
+    ));
 
-    for (let i = 0, len = this.props.data.length; i < len; i++) {
-      const { k, v } = this.props.data[i];
-
-      items.push(
-        <div key={k} className="item" onClick={this.handleClick.bind(this, k)}>
-          <span className="caption">{v}</span>
-        </div>,
-			);
-    }
-
-    return (<div className="toggle">
-      {items}
-    </div>);
+    return (
+      <div className="toggle">
+        {items}
+      </div>
+    );
   }
 }
 
